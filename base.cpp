@@ -139,3 +139,11 @@ std::set<T> intersect(const std::set<T>& a, const std::set<T>& b) {
 	std::set_intersection(a.begin(), a.end(), b.begin(), b.end(), std::inserter(result, result.begin()));
 	return result;
 }
+
+template<typename Iter>
+Iter next_looping(Iter it, Iter begin, Iter end) {
+    it++;
+    if (it == end)
+        return begin;
+    return it;
+}

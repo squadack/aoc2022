@@ -1,26 +1,11 @@
 #include "../base.cpp"
 
-std::list<int64_t>::iterator next(std::list<int64_t>::iterator it, std::list<int64_t>& list) {
-    it++;
-    if (it == list.end())
-        return list.begin();
-    return it;
-}
-
-std::list<int64_t>::const_iterator next(std::list<int64_t>::const_iterator it, const std::list<int64_t>& list) {
-    it++;
-    if (it == list.end())
-        return list.begin();
-    return it;
-}
-
-
 int64_t groveCoordinates(const std::list<int64_t>& sequence) {
     auto it = std::find(sequence.begin(), sequence.end(), 0);
     int64_t sum = 0;
     for (int i = 0; i < 3; i += 1) {
         for (int i = 0; i < 1000; i += 1) {
-            it = next(it, sequence);
+            it = next_looping(it, sequence.begin(), sequence.end());
         }
         sum += *it;
     }
@@ -36,7 +21,7 @@ void mix(std::list<int64_t>& sequence, std::vector<std::list<int64_t>::iterator>
         it = sequence.erase(it);
         if (it == sequence.end()) it = sequence.begin();
         for (int64_t i = 0; i < n; i += 1) {
-                it = next(it, sequence);
+                it = next_looping(it, sequence.begin(), sequence.end());
         }
         it = sequence.insert(it, val);
     }
