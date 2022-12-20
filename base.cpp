@@ -2,6 +2,7 @@
 #include <array>
 #include <fstream>
 #include <iostream>
+#include <list>
 #include <map>
 #include <numeric>
 #include <regex>
@@ -114,6 +115,21 @@ std::ostream& operator<<(std::ostream& os, const std::set<T>& vec) {
 		os << x;
 	}
 	os << '}';
+	return os;
+}
+
+template<typename T>
+std::ostream& operator<<(std::ostream& os, const std::list<T>& list) {
+	os << '[';
+	bool first = true;
+	for (const T& x : list) {
+		if (first)
+			first = false;
+		else
+			os << ", ";
+		os << x;
+	}
+	os << ']';
 	return os;
 }
 
